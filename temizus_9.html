@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temizus – Güvenli Temizlik Ağı | RKN Teck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f0;
+    --warm-white: #fff9f2;
+    --blush: #e8c4a0;
+    --rose: #c97d5b;
+    --deep: #2b1f16;
+    --mid: #6b4c38;
+    --accent: #d4a574;
+    --green: #4a7c59;
+    --light-green: #e8f2ec;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 48px;
+    background: rgba(250,246,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,125,91,0.15);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900;
+    color: var(--deep);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--rose); }
+  .nav-badge {
+    background: var(--green);
+    color: white;
+    font-size: 0.7rem; font-weight: 600;
+    padding: 4px 10px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 1px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,165,116,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--light-green);
+    color: var(--green);
+    padding: 6px 16px; border-radius: 30px;
+    font-size: 0.8rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before { content: '●'; font-size: 0.5rem; }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    font-weight: 900;
+    margin-bottom: 24px;
+    color: var(--deep);
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--rose);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--mid);
+    line-height: 1.7; max-width: 480px;
+    margin-bottom: 40px; font-weight: 300;
+  }
+  .cta-group { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--deep);
+    color: var(--cream);
+    padding: 16px 36px;
+    border: none; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--rose); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--deep);
+    padding: 14px 28px;
+    border: 2px solid var(--deep);
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--deep); color: var(--cream); }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    display: flex; flex-direction: column; gap: 20px;
+    position: relative;
+  }
+  .card-stack {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(43,31,22,0.1);
+    border: 1px solid rgba(201,125,91,0.1);
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blush), var(--rose));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+  .card-name { font-weight: 600; font-size: 1rem; }
+  .card-role { font-size: 0.8rem; color: var(--mid); }
+  .stars { color: #f4b942; font-size: 0.9rem; }
+  .card-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .stat { text-align: center; padding: 12px; background: var(--cream); border-radius: 12px; }
+  .stat-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--rose); }
+  .stat-label { font-size: 0.7rem; color: var(--mid); margin-top: 2px; }
+
+  .mini-card {
+    background: var(--deep);
+    color: white;
+    border-radius: 18px;
+    padding: 20px 28px;
+    display: flex; align-items: center; gap: 16px;
+    animation: float 6s ease-in-out infinite 1s;
+  }
+  .commission-badge {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900; color: var(--accent);
+  }
+  .mini-text { font-size: 0.85rem; line-height: 1.5; opacity: 0.9; }
+  .mini-text strong { color: var(--accent); display: block; font-size: 0.95rem; }
+
+  /* ── ANNOUNCEMENT BANNER ── */
+  .announcement {
+    background: linear-gradient(135deg, var(--rose), #b5694a);
+    color: white;
+    text-align: center;
+    padding: 20px 48px;
+  }
+  .announcement h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; margin-bottom: 6px;
+  }
+  .announcement p { font-size: 0.9rem; opacity: 0.9; }
+
+  /* ── HOW IT WORKS ── */
+  .section { padding: 100px 48px; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--rose);
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--mid);
+    max-width: 540px; line-height: 1.7;
+    margin-bottom: 60px;
+  }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .step {
+    background: white;
+    border-radius: 24px;
+    padding: 40px 32px;
+    border: 1px solid rgba(201,125,91,0.12);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .step:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(43,31,22,0.1); }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; font-weight: 900;
+    color: rgba(201,125,91,0.08);
+    position: absolute; top: -10px; right: 20px;
+    line-height: 1;
+  }
+  .step-icon { font-size: 2.5rem; margin-bottom: 20px; }
+  .step h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+  .step p { font-size: 0.9rem; color: var(--mid); line-height: 1.6; }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    background: var(--deep);
+    color: white;
+    padding: 100px 48px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .form-section h2 { color: white; }
+  .form-section .section-label { color: var(--accent); }
+  .form-section .section-sub { color: rgba(255,255,255,0.6); }
+
+  .offer-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .offer-list li {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.95rem; color: rgba(255,255,255,0.85);
+  }
+  .offer-list li::before {
+    content: '✓';
+    width: 28px; height: 28px;
+    background: var(--rose);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+  }
+
+  .form-card {
+    background: white;
+    border-radius: 28px;
+    padding: 48px 40px;
+    color: var(--deep);
+  }
+  .form-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; margin-bottom: 8px;
+  }
+  .form-card p { font-size: 0.85rem; color: var(--mid); margin-bottom: 32px; }
+
+  .form-group { margin-bottom: 20px; }
+  label { font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 8px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.5px; }
+  input, select, textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid rgba(43,31,22,0.12);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    background: var(--cream);
+    color: var(--deep);
+    transition: border 0.2s;
+    outline: none;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--rose); }
+  textarea { resize: vertical; min-height: 80px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--deep);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: var(--rose); transform: translateY(-2px); }
+
+  .form-note {
+    text-align: center;
+    font-size: 0.75rem; color: var(--mid);
+    margin-top: 14px;
+  }
+  .spots-counter {
+    background: var(--light-green);
+    color: var(--green);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.85rem; font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* ── FEATURES ── */
+  .features-section {
+    background: var(--warm-white);
+    padding: 100px 48px;
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px; margin-top: 60px;
+  }
+  .feat {
+    padding: 32px 24px;
+    border-radius: 20px;
+    border: 1.5px solid transparent;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .feat:hover { border-color: var(--blush); background: white; }
+  .feat-icon { font-size: 2rem; margin-bottom: 16px; }
+  .feat h4 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+  .feat p { font-size: 0.85rem; color: var(--mid); line-height: 1.6; }
+
+  /* ── SOCIAL ── */
+  .social-section { padding: 80px 48px; text-align: center; }
+  .social-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 12px; }
+  .social-sub { color: var(--mid); margin-bottom: 40px; }
+  .social-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .social-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 2px solid var(--deep);
+    color: var(--deep);
+    background: transparent;
+  }
+  .social-btn:hover { background: var(--deep); color: white; transform: translateY(-2px); }
+  .social-btn.instagram { border-color: #E1306C; color: #E1306C; }
+  .social-btn.instagram:hover { background: #E1306C; color: white; }
+  .social-btn.tiktok { border-color: #000; color: #000; }
+  .social-btn.tiktok:hover { background: #000; color: white; }
+  .social-btn.twitter { border-color: #1DA1F2; color: #1DA1F2; }
+  .social-btn.twitter:hover { background: #1DA1F2; color: white; }
+  .social-btn.linkedin { border-color: #0A66C2; color: #0A66C2; }
+  .social-btn.linkedin:hover { background: #0A66C2; color: white; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.7);
+    padding: 60px 48px 32px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px; padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 32px;
+  }
+  .footer-brand .logo { font-size: 1.8rem; display: block; margin-bottom: 16px; }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
+  .footer-col h5 { color: white; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+  .footer-col a { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 12px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom a { color: var(--accent); text-decoration: none; }
+
+  /* ── CONTACT BAR ── */
+  .contact-bar {
+    background: var(--rose);
+    color: white;
+    text-align: center;
+    padding: 14px;
+    font-size: 0.9rem;
+  }
+  .contact-bar a { color: white; font-weight: 700; text-decoration: none; }
+
+  /* SUCCESS STATE */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 32px;
+    color: var(--green);
+  }
+  .success-msg .checkmark { font-size: 3rem; margin-bottom: 16px; }
+  .success-msg h4 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 8px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 14px 24px; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero-visual { display: none; }
+    .form-section { grid-template-columns: 1fr; padding: 60px 24px; }
+    .steps { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .section { padding: 60px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    .social-section { padding: 60px 24px; }
+    .features-section { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Temiz<span>us</span></div>
+  <div class="nav-badge">🔔 Yakında Geliyor</div>
+</nav>
+
+<!-- CONTACT BAR -->
+<div class="contact-bar" style="margin-top: 70px;">
+  📞 Bilgi için: <a href="tel:05510840329">0551 084 03 29</a> &nbsp;|&nbsp; Şu an yalnızca <strong>Ankara</strong> için geçerlidir
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Temizlik Sektöründe Devrim</div>
+    <h1>
+      Kurumsal bir kimlikle
+      <em>daha fazla müşteri,</em>
+      daha az komisyon.
+    </h1>
+    <p class="hero-sub">
+      Temizus, temizlik işiyle geçimini sağlayan kadınların güvenli, hızlı ve kurumsal bir şekilde müşteri bulmasını sağlar. İlk 25 temizlikçiye yalnızca <strong>%5 komisyon!</strong>
+    </p>
+    <div class="cta-group">
+      <a href="#basvur" class="btn-primary">Hemen Başvur →</a>
+      <a href="#nasil-calisir" class="btn-outline">Nasıl Çalışır?</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="card-stack">
+      <div class="card-header">
+        <div class="avatar">👩</div>
+        <div>
+          <div class="card-name">Fatma H.</div>
+          <div class="card-role">Profesyonel Temizlikçi · Ankara</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="card-stats">
+        <div class="stat">
+          <div class="stat-val">48</div>
+          <div class="stat-label">Müşteri</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">%5</div>
+          <div class="stat-label">Komisyon</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">4.9</div>
+          <div class="stat-label">Puan</div>
+        </div>
+      </div>
+    </div>
+    <div class="mini-card">
+      <div class="commission-badge">%5</div>
+      <div class="mini-text">
+        <strong>İlk 25 kişiye özel fırsat!</strong>
+        Sektörün en düşük komisyon oranı ile başla.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+  <h3>🚀 Uygulama Çok Yakında Yayınlanıyor!</h3>
+  <p>Temizus uygulaması kısa süre içinde App Store ve Google Play'de! Şimdiden kaydol, özel haberdar ol.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="nasil-calisir">
+  <div class="section-label">Nasıl Çalışır?</div>
+  <h2>3 adımda kurumsal<br>temizlikçi ol</h2>
+  <p class="section-sub">Artık tek tek müşteri aramak yok. Temizus ile talep gelir, sen çalışırsın.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">📋</div>
+      <h3>Profilini Oluştur</h3>
+      <p>Hizmet türlerin, çalışma bölgen ve uygunluk saatlerini belirle. Güvenilir bir profil oluştur.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">📲</div>
+      <h3>Talep Al</h3>
+      <p>Müşteriler seni seçer, uygulama üzerinden talep gönderir. Anında bildirim alırsın.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">💰</div>
+      <h3>Kazan, Büyü</h3>
+      <p>Sadece %5 komisyonla çalış. Puanlarını artır, daha fazla müşteriye ulaş.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="form-section" id="basvur">
+  <div>
+    <div class="section-label">Erken Kayıt – Sınırlı Kontenjan</div>
+    <h2>İlk 25 temizlikçiden biri ol</h2>
+    <p class="section-sub">Yalnızca Ankara'da hizmet verecek ilk 25 temizlikçi, %5 komisyon fırsatından yararlanacak.</p>
+    <ul class="offer-list">
+      <li>%5 komisyon – sektörün en düşük oranı</li>
+      <li>Kurumsal profil ve referans sistemi</li>
+      <li>Güvenli ve hızlı müşteri bağlantısı</li>
+      <li>Uygulama yayınında öncelikli eşleşme</li>
+      <li>Ankara bölgesinde kapsamlı destek</li>
+    </ul>
+  </div>
+
+  <div class="form-card">
+    <h3>Temizlikçi Kaydı</h3>
+    <p>Formu doldurun, sizi öncelikli listeye ekleyelim.</p>
+    <div class="spots-counter">
+      🎯 İlk 25 kişiden biri olma fırsatı – Ankara'ya özel
+    </div>
+    <div id="form-container">
+      <div class="form-group">
+        <label>Ad Soyad</label>
+        <input type="text" id="name" placeholder="Adınızı ve soyadınızı girin">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Telefon</label>
+          <input type="tel" id="phone" placeholder="05XX XXX XX XX">
+        </div>
+        <div class="form-group">
+          <label>İlçe (Ankara)</label>
+          <select id="district">
+            <option value="">Seçin</option>
+            <option>Çankaya</option>
+            <option>Keçiören</option>
+            <option>Mamak</option>
+            <option>Yenimahalle</option>
+            <option>Etimesgut</option>
+            <option>Sincan</option>
+            <option>Altındağ</option>
+            <option>Gölbaşı</option>
+            <option>Pursaklar</option>
+            <option>Diğer</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Hizmet Türleri</label>
+        <select id="service">
+          <option value="">Seçin</option>
+          <option>Ev Temizliği</option>
+          <option>Ofis Temizliği</option>
+          <option>Derin Temizlik</option>
+          <option>Cam & Balkon Temizliği</option>
+          <option>Taşınma Temizliği</option>
+          <option>Hepsi</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Deneyim (yıl)</label>
+        <input type="number" id="exp" placeholder="Örn: 3" min="0" max="40">
+      </div>
+      <div class="form-group">
+        <label>Kısa Tanıtım (İsteğe Bağlı)</label>
+        <textarea id="bio" placeholder="Kendinizi kısaca tanıtın..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitForm()">✨ Kaydımı Tamamla</button>
+      <p class="form-note">🔒 Bilgileriniz güvende. Yalnızca uygulama kaydı için kullanılır.</p>
+    </div>
+    <div class="success-msg" id="success">
+      <div class="checkmark">🎉</div>
+      <h4>Kaydınız Alındı!</h4>
+      <p>Uygulama yayına girdiğinde sizi haberdar edeceğiz. İlk 25 arasındasınız!</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="section-label">Neden Temizus?</div>
+  <h2>Temizlik sektörünü<br>dönüştürüyoruz</h2>
+  <div class="features-grid">
+    <div class="feat">
+      <div class="feat-icon">🛡️</div>
+      <h4>Güvenli Platform</h4>
+      <p>Kimlik doğrulama ve değerlendirme sistemiyle hem temizlikçiler hem müşteriler korunur.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">⚡</div>
+      <h4>Hızlı Eşleşme</h4>
+      <p>Yapay zeka destekli eşleşme sistemi en uygun temizlikçiyi dakikalar içinde bulur.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">💼</div>
+      <h4>Kurumsal Kimlik</h4>
+      <p>Profesyonel profilinizle müşteri güveni kazanın, kariyer olarak temizliği benimseyin.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">📊</div>
+      <h4>Şeffaf Kazanç</h4>
+      <p>Anlık gelir takibi, düşük komisyon ve düzenli ödeme ile finansal özgürlük.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL MEDIA -->
+<section class="social-section">
+  <p class="section-label">Sosyal Medya</p>
+  <h3 class="social-title">Bizi Takip Edin</h3>
+  <p class="social-sub">Uygulama haberleri, kadın hikayeleri ve özel duyurular için sosyal medyada bize katılın.</p>
+  <div class="social-links">
+    <a href="#" class="social-btn instagram">
+      📸 @temizus
+    </a>
+    <a href="#" class="social-btn tiktok">
+      🎵 @temizus
+    </a>
+    <a href="#" class="social-btn twitter">
+      🐦 @temizus
+    </a>
+    <a href="#" class="social-btn linkedin">
+      💼 Temizus
+    </a>
+  </div>
+  <div style="margin-top: 40px; padding: 24px; background: var(--cream); border-radius: 20px; display: inline-block;">
+    <p style="font-size: 0.85rem; color: var(--mid);">
+      📞 Telefon: <strong><a href="tel:05510840329" style="color: var(--rose); text-decoration: none;">0551 084 03 29</a></strong>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      🏢 <strong>RKN Teck</strong> tarafından geliştirildi
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo" style="color:white">Temiz<span style="color:var(--accent)">us</span></span>
+      <p>Temizlik işiyle geçimini sağlayan kadınların güçlenmesi için geliştirildi. Ankara'dan Türkiye'ye yayılıyor.</p>
+      <p style="margin-top: 16px; font-size: 0.8rem; color: rgba(255,255,255,0.4);">Geliştirici: RKN Teck · 0551 084 03 29</p>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <a href="#nasil-calisir">Nasıl Çalışır?</a>
+      <a href="#basvur">Temizlikçi Kaydı</a>
+      <a href="#">Müşteri Ol</a>
+      <a href="#">Fiyatlandırma</a>
+    </div>
+    <div class="footer-col">
+      <h5>Şirket</h5>
+      <a href="#">Hakkımızda</a>
+      <a href="#">Kariyer</a>
+      <a href="#">Basın</a>
+      <a href="#">İletişim</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Temizus – RKN Teck. Tüm hakları saklıdır.</span>
+    <span>🌍 Şu an yalnızca Ankara'da geçerlidir</span>
+  </div>
+</footer>
+
+<script>
+function submitForm() {
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const district = document.getElementById('district').value;
+  const service = document.getElementById('service').value;
+
+  if (!name || !phone || !district || !service) {
+    alert('Lütfen zorunlu alanları doldurun.');
+    return;
+  }
+
+  document.getElementById('form-container').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
